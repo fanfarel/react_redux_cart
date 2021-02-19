@@ -2,26 +2,45 @@ const initialState = {
   productData: [
     {
       id: 0,
-      imgUrl: "https://s00.yaplakal.com/pics/pics_original/6/6/1/13170166.jpg",
-      nameOfProduct: "Product1",
-      discribeOfProduct: "huj pyzda",
+      imgUrl: "https://via.placeholder.com/800?text=Product 1",
+      nameOfProduct: "Product 1",
+      discribeOfProduct: "discribe of the product 1",
       price: 100
     },
     {
       id: 1,
-      imgUrl:
-        "https://cs12.pikabu.ru/post_img/big/2019/06/22/8/1561206511192174407.png",
-      nameOfProduct: "Product2",
-      discribeOfProduct: "discribeOfProduct2",
+      imgUrl: "https://via.placeholder.com/800?text=Product 2",
+      nameOfProduct: "Product 2",
+      discribeOfProduct: "discribe of the product 2",
       price: 20
     },
     {
       id: 2,
-      imgUrl:
-        "https://cs9.pikabu.ru/images/big_size_comm/2020-09_3/160016588917819179.png",
-      nameOfProduct: "Product3",
-      discribeOfProduct: "discribeOfProduct3",
+      imgUrl: "https://via.placeholder.com/800?text=Product 3",
+      nameOfProduct: "Product 3",
+      discribeOfProduct: "discribe of the product 3",
       price: 3
+    },
+    {
+      id: 3,
+      imgUrl: "https://via.placeholder.com/800?text=Product 4",
+      nameOfProduct: "Product 4",
+      discribeOfProduct: "discribe of the product 4",
+      price: 300
+    },
+    {
+      id: 4,
+      imgUrl: "https://via.placeholder.com/800?text=Product 5",
+      nameOfProduct: "Product 5",
+      discribeOfProduct: "discribe of the product 5",
+      price: 10
+    },
+    {
+      id: 5,
+      imgUrl: "https://via.placeholder.com/800?text=Product 6",
+      nameOfProduct: "Product 6",
+      discribeOfProduct: "discribe of the product 6",
+      price: 2
     }
   ],
   isFetching: false

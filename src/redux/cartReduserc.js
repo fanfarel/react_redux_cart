@@ -1,6 +1,7 @@
 const ADD_PRODUCT = "ADD_PRODUCT";
 const TOTAL_PRICE = "TOTAL_PRICE";
-const ADD_QUANTITY = "ADD_QUANTITY";
+const CHANGE_QUANTITY = "CHANGE_QUANTITY";
+const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 const initialState = {
@@ -12,10 +13,7 @@ const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
       let newProduct = {
-        id: action.id,
-        imgUrl: action.imgUrl,
-        nameOfProduct: action.nameOfProduct,
-        price: action.price,
+        ...action.product,
         quantity: 1
       };
 
@@ -24,20 +22,31 @@ const cartReducer = (state = initialState, action) => {
         cartProduct: [...state.cartProduct, newProduct]
       };
 
-    case ADD_QUANTITY:
+    case CHANGE_QUANTITY:
       return {
         ...state,
         cartProduct: state.cartProduct.map((p) => {
           if (p.id === action.id) {
-            return { ...p, quantity: action.quantity };
+            return { ...p, quantity: p.quantity + 1 };
           }
           return p;
         }),
         totalPrice: state.totalPrice + action.price
       };
 
+    case DECREASE_QUANTITY:
+      return {
+        ...state,
+        cartProduct: state.cartProduct.map((p) => {
+          if (p.id === action.id) {
+            return { ...p, quantity: p.quantity - 1 };
+          }
+          return p;
+        }),
+        totalPrice: state.totalPrice - action.price
+      };
+
     case DELETE_PRODUCT:
-      console.info(action);
       return {
         ...state,
         cartProduct: state.cartProduct.filter((p) => {
@@ -56,25 +65,19 @@ const cartReducer = (state = initialState, action) => {
   }
 };
 
-export const addProductToCart = (
-  id,
-  imgUrl,
-  nameOfProduct,
-  price,
-  quantity
-) => ({
+export const addProductToCart = (product) => ({
   type: ADD_PRODUCT,
-  id,
-  imgUrl,
-  nameOfProduct,
-  price,
-  quantity
+  product
 });
 
-export const addQuantityInCart = (id, quantity, price) => ({
-  type: ADD_QUANTITY,
+export const changeQuantityInCart = (id, price) => ({
+  type: CHANGE_QUANTITY,
   id,
-  quantity,
+  price
+});
+export const dekreaseQuantityInCart = (id, price) => ({
+  type: DECREASE_QUANTITY,
+  id,
   price
 });
 
@@ -86,5 +89,40 @@ export const totalPrice = (totalPrice) => ({
 export const deleteProduct = () => ({
   type: DELETE_PRODUCT
 });
+
+export const addProduct = (product, cartProducts, productPrice) => (
+  dispatch
+) => {
+  if (cartProducts.length === 0) {
+    dispatch(addProductToCart(product));
+    dispatch(totalPrice(productPrice));
+  } else if (
+    cartProducts.every((p) => {
+      return p.id !== product.id;
+    })
+  ) {
+    dispatch(addProductToCart(product));
+    dispatch(totalPrice(productPrice));
+  } else {
+    dispatch(changeQuantityInCart(product.id, product.price));
+  }
+};
+
+export const changeAmount = (items, event) => {
+  return (dispatch) => {
+    items.map((i) => {
+      if (i.id === event.target.id * 1 && event.target.name === "decrease") {
+        dispatch(dekreaseQuantityInCart(i.id, i.price));
+        if (i.quantity - 1 === 0) {
+          dispatch(deleteProduct());
+        }
+      }
+      if (i.id === event.target.id * 1 && event.target.name === "increase") {
+        dispatch(changeQuantityInCart(i.id, i.price));
+      }
+      return 0;
+    });
+  };
+};
 
 export default cartReducer;

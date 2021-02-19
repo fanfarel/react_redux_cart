@@ -3,12 +3,19 @@
   margin: 0;
 }
 
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
+}
+
 .product {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
-  /* width: 100%; */
   margin: 1em 2em 1em 2em;
   border: 2px solid black;
 }
@@ -17,7 +24,7 @@
   margin: 5px;
 }
 .product > img {
-  width: 20%;
+  width: 25%;
   flex: 1;
 }
 .text {
@@ -28,24 +35,27 @@
   justify-content: center;
 }
 .quantity {
-  flex: 3;
-}
-.text > :nth-last-child(1) {
-  flex: 6;
-}
-.text > :nth-last-child(2) {
   flex: 2;
 }
-.quantity {
-  padding-top: 20px;
-  margin-right: 60px;
+.text > :nth-last-child(1) {
+  flex: 2;
 }
-.quantity input {
-  -webkit-appearance: none;
-  border: none;
-  text-align: center;
-  width: 32px;
-  font-size: 16px;
-  color: #43484d;
-  font-weight: 300;
+.text > :nth-last-child(2) {
+  flex: 6;
+}
+.quantity {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin: 1.5em;
+
+}
+.quantity > :nth-child(odd){
+  padding: 0.6em;
+  flex: 1;
+}
+.quantity > p{
+  flex: 20;
+  align-self: center;
+
 }

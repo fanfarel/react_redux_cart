@@ -9,7 +9,6 @@ export const loadState = () => {
     return console.error("load state failed");
   }
 };
-
 export const saveState = (state) => {
   try {
     const serializeState = JSON.stringify(state);

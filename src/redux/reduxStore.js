@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import thunk from "redux-thunk";
 import cartReducer from "./cartReduserc";
 import { loadState, saveState } from "./localStorage";
 import productReducer from "./productReducer";
@@ -10,12 +11,10 @@ let reducers = combineReducers({
   cartReducer: cartReducer
 });
 
-const store = createStore(reducers, persistedState);
+const store = createStore(reducers, persistedState, applyMiddleware(thunk));
 
 store.subscribe(() => {
   saveState(store.getState());
 });
-
-window.store = store;
 
 export default store;

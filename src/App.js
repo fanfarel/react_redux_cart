@@ -8,21 +8,28 @@ import OrderFormContainer from "./Cart/OrderForm/OrderForm";
 export default function App() {
   return (
     <div className="App">
-      <HeaderContainer />
-      <div className="products">
-        <Route path="/product" render={() => <ProductContainer />} />
+      <HeaderContainer className="header" />
+      <div className="content">
+        <div className="products">
+          <Route
+            className="product"
+            path="/product"
+            render={() => <ProductContainer />}
+          />
+        </div>
+        <Route
+          className="cart"
+          path="/cart"
+          component={() => {
+            return (
+              <div className="cart">
+                <ContainerCartProduct />
+                <OrderFormContainer />
+              </div>
+            );
+          }}
+        />
       </div>
-      <Route
-        path="/cart"
-        component={() => {
-          return (
-            <div>
-              <ContainerCartProduct />
-              <OrderFormContainer />
-            </div>
-          );
-        }}
-      />
     </div>
   );
 }
