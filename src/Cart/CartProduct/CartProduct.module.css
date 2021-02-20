@@ -31,11 +31,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: space-between;
   justify-content: center;
-}
-.quantity {
-  flex: 2;
 }
 .text > :nth-last-child(1) {
   flex: 2;
@@ -46,16 +42,19 @@
 .quantity {
   display: flex;
   flex-direction: row;
-  flex: 1;
+  flex: 0 0 19%;
   margin: 1.5em;
-
 }
-.quantity > :nth-child(odd){
+.quantity > :nth-child(odd) {
   padding: 0.6em;
   flex: 1;
 }
-.quantity > p{
+.quantity > p {
   flex: 20;
   align-self: center;
-
+}
+.totalPrice {
+  font-weight: 700;
+  align-self: flex-start;
+  margin: 3em;
 }

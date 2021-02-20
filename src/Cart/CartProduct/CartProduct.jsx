@@ -24,6 +24,7 @@ const CartProduct = (props) => {
               name="decrease"
               onClick={chengeQuantity}
             >
+              -
             </button>
             <p>{product.quantity}</p>
             <button
@@ -33,6 +34,7 @@ const CartProduct = (props) => {
               name="increase"
               onClick={chengeQuantity}
             >
+              +
             </button>
           </div>
         </div>
