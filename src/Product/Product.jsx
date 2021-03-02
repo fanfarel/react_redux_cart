@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import styles from "./Product.module.css";
 import { addProduct } from "../redux/cartReduserc";
-import ToggleButton from "@material-ui/lab/ToggleButton";
+import Button from "@material-ui/core/Button";
 
 const Product = (props) => {
   const add = (value) => {
-    const product = props.products[value.target.id];
+    const product = props.products[value.id];
     const cartProduct = props.cartProdtucts;
     props.addProduct(product, cartProduct, product.price);
   };
@@ -18,11 +18,16 @@ const Product = (props) => {
         <div>{products.discribeOfProduct}</div>
         <div>Price: {products.price} $</div>
 
-        <ToggleButton>
-          <a type="button" id={products.id} onClick={add}>
-            Add to card
-          </a>
-        </ToggleButton>
+        <Button
+          variant="contained"
+          type="button"
+          id={products.id}
+          onClick={(e) => {
+            add(e.currentTarget);
+          }}
+        >
+          Add to card
+        </Button>
       </section>
     </div>
   ));
